@@ -1,0 +1,47 @@
+Informacion:
+
+	Nombre: Project pets
+
+	Git:
+		Repositorio: project_pets
+		URL Git: git clone https://github.com/ktosoriog/project_pets.git
+		Password: ktosoriog.2024*
+	
+	Proyectos:
+	
+		project_pets_backend
+		
+		project_pets_frontend:
+		
+			Estructura proyecto:
+			
+				src/
+				├── assets/                     # Recursos estáticos
+				│   ├── images/                 # Carpeta para imágenes
+				│   │   └── logo.png            # Imagen de ejemplo
+				│   └── styles/                 # Estilos globales
+				│       └── global.css          # Estilos globales
+				├── components/                 # Componentes reutilizables
+				│   ├── Header.tsx              # Componente del encabezado
+				│   ├── Header.css              # Estilos específicos del Header
+				│   ├── Footer.tsx              # Componente del pie de página
+				│   ├── Footer.css              # Estilos específicos del Footer
+				│   ├── Button.tsx              # Componente de botón reutilizable
+				│   └── Button.css              # Estilos específicos del botón
+				├── pages/                      # Páginas principales
+				│   ├── Home.tsx                # Página de inicio
+				│   ├── Home.css                # Estilos específicos de la página de inicio
+				│   ├── Login.tsx               # Página de login
+				│   └── Login.css               # Estilos específicos de la página de login
+				├── services/                   # Servicios para interacciones API
+				│   └── authService.ts          # Servicio para autenticación
+				├── App.tsx                     # Configuración de rutas
+				└── main.tsx                    # Punto de entrada principal
+
+
+	Usuarios:
+	
+		- admin@pets.com, Password: 123456789 - Encriptado($2a$10$rKR9yfhY7FvvjvMVMs8sUu1jhWjNoiu/AhlpecpjtCBeRxZVjmNRG)
+		- vet@pets.com, Password: 123456789 - Encriptado($2a$10$rKR9yfhY7FvvjvMVMs8sUu1jhWjNoiu/AhlpecpjtCBeRxZVjmNRG)
+		- cliente@pets.com, Password: 123456789 - Encriptado($2a$10$rKR9yfhY7FvvjvMVMs8sUu1jhWjNoiu/AhlpecpjtCBeRxZVjmNRG)
+		

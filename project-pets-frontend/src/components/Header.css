@@ -1,0 +1,43 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2e86c1;
+  padding: 1rem 2rem;
+  color: #fff;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  width: 40px;
+  margin-right: 10px;
+}
+
+.project-name {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.menu a {
+  margin-right: 1.5rem;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.btn-entrar {
+  background-color: #fff;
+  color: #2e86c1;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.btn-entrar:hover {
+  background-color: #f0f0f0;
+}
