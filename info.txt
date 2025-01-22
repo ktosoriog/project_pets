@@ -44,4 +44,13 @@ Informacion:
 		- admin@pets.com, Password: 123456789 - Encriptado($2a$10$rKR9yfhY7FvvjvMVMs8sUu1jhWjNoiu/AhlpecpjtCBeRxZVjmNRG)
 		- vet@pets.com, Password: 123456789 - Encriptado($2a$10$rKR9yfhY7FvvjvMVMs8sUu1jhWjNoiu/AhlpecpjtCBeRxZVjmNRG)
 		- cliente@pets.com, Password: 123456789 - Encriptado($2a$10$rKR9yfhY7FvvjvMVMs8sUu1jhWjNoiu/AhlpecpjtCBeRxZVjmNRG)
+	
+	
+	Comandos despliegue EC2:
+	
+		-	docker-compose build
+		-	docker-compose up -d
+		-	docker-compose ps
+		-	docker logs project-pets-backend
+
 		
