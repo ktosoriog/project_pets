@@ -1,7 +1,7 @@
 # project-pets-backend/Dockerfile
 
 # Etapa 1: Build con Maven
-FROM maven:3.9.4-eclipse-temurin-17 AS build
+FROM maven:3.9.4-eclipse-temurin-21 AS build
 WORKDIR /app
 
 # Copiar pom.xml primero para cachear dependencias
