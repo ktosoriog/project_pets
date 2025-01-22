@@ -8,6 +8,8 @@ COPY package*.json ./
 # Si tienes pnpm o yarn, ajusta a tu instalador
 RUN npm install
 
+ENV NODE_ENV=production
+
 COPY . .
 RUN npm run build  # Genera dist/ (Vite) o build/ (CRA)
 
