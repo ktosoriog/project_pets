@@ -11,10 +11,9 @@ services:
     # Montamos un volumen persistente para /var/lib/mysql
     volumes:
       - db_data:/var/lib/mysql
-    # Mapear el puerto 3306 solo si quieres conectarte externo
+      - ./project-pets-database/init-scripts:/docker-entrypoint-initdb.d
     ports:
       - "3306:3306"
-
   backend:
     build:
       context: ./project-pets-backend
