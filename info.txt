@@ -52,5 +52,14 @@ Informacion:
 		-	docker-compose up -d
 		-	docker-compose ps
 		-	docker logs project-pets-backend
+		-	docker-compose down
+		-	docker volume rm project_pets_db_data 
+		-	Comandos BD:
+			-	docker exec -it project-pets-db bash
+			-	mysql -u admin -p
+			-	contraseña (admin123).
+			-	USE dbprojectpets;
+			-	SHOW TABLES;
+			
 
 		

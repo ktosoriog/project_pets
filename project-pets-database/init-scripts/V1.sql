@@ -6,19 +6,19 @@ CREATE DATABASE dbprojectpets;
 USE dbprojectpets;
 
 -- ========================================
--- 2) TABLA ROL
+-- 2) TABLA rol
 -- ========================================
-CREATE TABLE ROL (
+CREATE TABLE rol (
     idRol INT AUTO_INCREMENT PRIMARY KEY,
     NomRol VARCHAR(45) NOT NULL,
     DescripcionRol VARCHAR(100)
 )  ENGINE=INNODB;
 
 -- ========================================
--- 3) TABLA USUARIO
+-- 3) TABLA usuario
 --    (Se usará Correo y Clave para el login)
 -- ========================================
-CREATE TABLE USUARIO (
+CREATE TABLE usuario (
   idUsuario INT AUTO_INCREMENT PRIMARY KEY,
   NomUsuario VARCHAR(45) NOT NULL,
   ApeUsuario VARCHAR(45),
@@ -31,61 +31,61 @@ CREATE TABLE USUARIO (
   FechaBaja DATE,
   idRol INT,
   CONSTRAINT fk_usuario_rol 
-    FOREIGN KEY (idRol) REFERENCES ROL(idRol)
+    FOREIGN KEY (idRol) REFERENCES rol(idRol)
 ) ENGINE=InnoDB;
 
 -- ========================================
--- 4) TABLA CARGO
+-- 4) TABLA cargo
 -- ========================================
-CREATE TABLE CARGO (
+CREATE TABLE cargo (
   idCargo INT AUTO_INCREMENT PRIMARY KEY,
   NomCargo VARCHAR(45),
   DetalleCargo VARCHAR(255)
 ) ENGINE=InnoDB;
 
 -- ========================================
--- 5) TABLA EMPLEADO
---    Empleado relaciona USUARIO y CARGO
+-- 5) TABLA empleado
+--    empleado relaciona usuario y cargo
 -- ========================================
-CREATE TABLE EMPLEADO (
+CREATE TABLE empleado (
   idEmpleado INT AUTO_INCREMENT PRIMARY KEY,
   idUsuario INT,
   idCargo INT,
   CONSTRAINT fk_empleado_usuario 
-    FOREIGN KEY (idUsuario) REFERENCES USUARIO(idUsuario),
+    FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario),
   CONSTRAINT fk_empleado_cargo 
-    FOREIGN KEY (idCargo) REFERENCES CARGO(idCargo)
+    FOREIGN KEY (idCargo) REFERENCES cargo(idCargo)
 ) ENGINE=InnoDB;
 
 -- ========================================
--- 6) TABLA ESPECIE
+-- 6) TABLA especie
 -- ========================================
-CREATE TABLE ESPECIE (
+CREATE TABLE especie (
   idEspecie INT AUTO_INCREMENT PRIMARY KEY,
   NomEspecie VARCHAR(45)
 ) ENGINE=InnoDB;
 
 -- ========================================
--- 7) TABLA RAZA
---    Raza referencia a ESPECIE
+-- 7) TABLA raza
+--    raza referencia a especie
 -- ========================================
-CREATE TABLE RAZA (
+CREATE TABLE raza (
   idRaza INT AUTO_INCREMENT PRIMARY KEY,
   NomRaza VARCHAR(45),
   idEspecie INT,
   Descripcion VARCHAR(255),
   CONSTRAINT fk_raza_especie 
-    FOREIGN KEY (idEspecie) REFERENCES ESPECIE(idEspecie)
+    FOREIGN KEY (idEspecie) REFERENCES especie(idEspecie)
 ) ENGINE=InnoDB;
 
 -- ========================================
--- 8) TABLA MASCOTA
+-- 8) TABLA mascota
 --    Campos básicos, se asume
 --    que “Especie” y “Raza” son
 --    simples textos. (Podrías hacer
---    una FK a RAZA y ESPECIE si lo deseas.)
+--    una FK a raza y especie si lo deseas.)
 -- ========================================
-CREATE TABLE MASCOTA (
+CREATE TABLE mascota (
   idMascota INT AUTO_INCREMENT PRIMARY KEY,
   NomMascota VARCHAR(45),
   FechaNacimiento DATE,
@@ -94,27 +94,27 @@ CREATE TABLE MASCOTA (
 ) ENGINE=InnoDB;
 
 -- ========================================
--- 9) TABLA CLIENTE
---    Cliente relaciona USUARIO y,
---    opcionalmente, MASCOTA
+-- 9) TABLA cliente
+--    cliente relaciona usuario y,
+--    opcionalmente, mascota
 -- ========================================
-CREATE TABLE CLIENTE (
+CREATE TABLE cliente (
   idCliente INT AUTO_INCREMENT PRIMARY KEY,
   idUsuario INT,
   idMascota INT,
   CONSTRAINT fk_cliente_usuario 
-    FOREIGN KEY (idUsuario) REFERENCES USUARIO(idUsuario)
+    FOREIGN KEY (idUsuario) REFERENCES usuario(idUsuario)
 ) ENGINE=InnoDB;
 
 -- Para enlazar la mascota, si tu diagrama lo requiere:
-ALTER TABLE CLIENTE
+ALTER TABLE cliente
   ADD CONSTRAINT fk_cliente_mascota 
-    FOREIGN KEY (idMascota) REFERENCES MASCOTA(idMascota);
+    FOREIGN KEY (idMascota) REFERENCES mascota(idMascota);
 
 -- ========================================
--- 10) TABLA TIPOSERVICIO
+-- 10) TABLA tiposervicio
 -- ========================================
-CREATE TABLE TIPOSERVICIO (
+CREATE TABLE tiposervicio (
   idTipoServ INT AUTO_INCREMENT PRIMARY KEY,
   NomBreServ VARCHAR(45),
   Precio DOUBLE,
@@ -122,9 +122,9 @@ CREATE TABLE TIPOSERVICIO (
 ) ENGINE=InnoDB;
 
 -- ========================================
--- 11) TABLA PRODUCTO
+-- 11) TABLA producto
 -- ========================================
-CREATE TABLE PRODUCTO (
+CREATE TABLE producto (
   idProducto INT AUTO_INCREMENT PRIMARY KEY,
   NomProducto VARCHAR(45),
   PrecioUnitario DOUBLE,
@@ -132,11 +132,11 @@ CREATE TABLE PRODUCTO (
 ) ENGINE=InnoDB;
 
 -- ========================================
--- 12) TABLA SERVICIO
---    Relaciona Mascota, Empleado,
---    TipoServicio y Producto (opcional).
+-- 12) TABLA servicio
+--    Relaciona mascota, empleado,
+--    tiposervicio y producto (opcional).
 -- ========================================
-CREATE TABLE SERVICIO (
+CREATE TABLE servicio (
   idServicio INT AUTO_INCREMENT PRIMARY KEY,
   FechaServ DATE,
   idMascota INT,
@@ -145,20 +145,20 @@ CREATE TABLE SERVICIO (
   idProducto INT,
   description TEXT,
   CONSTRAINT fk_servicio_mascota 
-    FOREIGN KEY (idMascota) REFERENCES MASCOTA(idMascota),
+    FOREIGN KEY (idMascota) REFERENCES mascota(idMascota),
   CONSTRAINT fk_servicio_empleado 
-    FOREIGN KEY (idEmpleado) REFERENCES EMPLEADO(idEmpleado),
+    FOREIGN KEY (idEmpleado) REFERENCES empleado(idEmpleado),
   CONSTRAINT fk_servicio_tiposerv 
-    FOREIGN KEY (idTipoServ) REFERENCES TIPOSERVICIO(idTipoServ),
+    FOREIGN KEY (idTipoServ) REFERENCES tiposervicio(idTipoServ),
   CONSTRAINT fk_servicio_producto 
-    FOREIGN KEY (idProducto) REFERENCES PRODUCTO(idProducto)
+    FOREIGN KEY (idProducto) REFERENCES producto(idProducto)
 ) ENGINE=InnoDB;
 
 -- ========================================
--- 13) TABLA FACTURA
+-- 13) TABLA factura
 --    Campos que se ven en el diagrama
 -- ========================================
-CREATE TABLE FACTURA (
+CREATE TABLE factura (
   idFactura INT AUTO_INCREMENT PRIMARY KEY,
   nFactura VARCHAR(45),
   Estado VARCHAR(45),
@@ -167,62 +167,62 @@ CREATE TABLE FACTURA (
 ) ENGINE=InnoDB;
 
 -- ========================================
--- 14) TABLA DETALLESERVICIO
---    Une FACTURA con SERVICIO
+-- 14) TABLA detalleservicio
+--    Une factura con servicio
 -- ========================================
-CREATE TABLE DETALLESERVICIO (
+CREATE TABLE detalleservicio (
   idDetalleServ INT AUTO_INCREMENT PRIMARY KEY,
   idFactura INT,
   idServicio INT,
   Cantidad INT,
   Total DOUBLE,
   CONSTRAINT fk_detalleserv_factura 
-    FOREIGN KEY (idFactura) REFERENCES FACTURA(idFactura),
+    FOREIGN KEY (idFactura) REFERENCES factura(idFactura),
   CONSTRAINT fk_detalleserv_servicio 
-    FOREIGN KEY (idServicio) REFERENCES SERVICIO(idServicio)
+    FOREIGN KEY (idServicio) REFERENCES servicio(idServicio)
 ) ENGINE=InnoDB;
 
 -- ========================================
--- 15) TABLA HISTORIACLINICA
---    Relaciona Mascota
+-- 15) TABLA historiaclinica
+--    Relaciona mascota
 -- ========================================
-CREATE TABLE HISTORIACLINICA (
+CREATE TABLE historiaclinica (
   idHistoria INT AUTO_INCREMENT PRIMARY KEY,
   idMascota INT,
   FechaServ DATE,
   Detalle VARCHAR(255),
   CONSTRAINT fk_historia_mascota 
-    FOREIGN KEY (idMascota) REFERENCES MASCOTA(idMascota)
+    FOREIGN KEY (idMascota) REFERENCES mascota(idMascota)
 ) ENGINE=InnoDB;
 
 -- ========================================
--- 16) TABLA FORMAPAGO
+-- 16) TABLA formapago
 -- ========================================
-CREATE TABLE FORMAPAGO (
+CREATE TABLE formapago (
   idFormaPago INT AUTO_INCREMENT PRIMARY KEY,
   NomFormaPago VARCHAR(45)
 ) ENGINE=InnoDB;
 
 -- ========================================
--- 17) TABLA RECIBOPAGO
---    Referencia FACTURA y FORMAPAGO
+-- 17) TABLA recibopago
+--    Referencia factura y formapago
 -- ========================================
-CREATE TABLE RECIBOPAGO (
+CREATE TABLE recibopago (
   idReciboPago INT AUTO_INCREMENT PRIMARY KEY,
   idFactura INT,
   FormaPago INT,
   ValorPagado DOUBLE,
   CONSTRAINT fk_recibo_factura 
-    FOREIGN KEY (idFactura) REFERENCES FACTURA(idFactura),
+    FOREIGN KEY (idFactura) REFERENCES factura(idFactura),
   CONSTRAINT fk_recibo_formapago 
-    FOREIGN KEY (FormaPago) REFERENCES FORMAPAGO(idFormaPago)
+    FOREIGN KEY (FormaPago) REFERENCES formapago(idFormaPago)
 ) ENGINE=InnoDB;
 
 -- ========================================
--- 18) TABLA INVENTARIO
---    Control de existencias por Producto
+-- 18) TABLA inventario
+--    Control de existencias por producto
 -- ========================================
-CREATE TABLE INVENTARIO (
+CREATE TABLE inventario (
   idInventario INT AUTO_INCREMENT PRIMARY KEY,
   idProducto INT,
   CanDisponible INT,
@@ -230,7 +230,7 @@ CREATE TABLE INVENTARIO (
   Salida DATE,
   StopMin INT,
   CONSTRAINT fk_inventario_producto 
-    FOREIGN KEY (idProducto) REFERENCES PRODUCTO(idProducto)
+    FOREIGN KEY (idProducto) REFERENCES producto(idProducto)
 ) ENGINE=InnoDB;
 
 -- ========================================
