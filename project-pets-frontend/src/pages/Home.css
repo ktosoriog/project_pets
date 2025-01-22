@@ -1,0 +1,23 @@
+/* Contenedor principal centrado en pantalla */
+.home-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 1;
+  position: relative;
+  color: #333;
+}
+
+.home-container h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #2e86c1;
+}
+
+.home-container p {
+  max-width: 600px;
+  line-height: 1.5;
+}
