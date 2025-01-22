@@ -30,10 +30,6 @@ Thumbs.db
 # Excluir node_modules y archivos de build (frontend React.js)
 project-pets-frontend/node_modules/
 project-pets-frontend/build/
-project-pets-frontend/.env
-project-pets-frontend/.env.local
-project-pets-frontend/.env.production
-project-pets-frontend/.env.test
 
 # Archivos de lock
 package-lock.json
