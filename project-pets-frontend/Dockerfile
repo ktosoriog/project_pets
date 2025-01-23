@@ -22,6 +22,7 @@ RUN npm run build
 
 # Etapa 2: Servir con Nginx
 FROM nginx:alpine
+
 COPY default.conf /etc/nginx/conf.d/default.conf
 
 # Copiar los archivos compilados al directorio raíz de Nginx
