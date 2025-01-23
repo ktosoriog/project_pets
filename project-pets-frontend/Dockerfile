@@ -14,9 +14,6 @@ ENV NODE_ENV=production
 # Copiar el resto de los archivos del proyecto
 COPY . .
 
-# Obtener la IP pública de la instancia EC2 y crear un archivo .env dinámico
-RUN echo "VITE_API_URL=http://$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4):8080" > .env
-
 # Compilar la aplicación
 RUN npm run build
 
