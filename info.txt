@@ -60,6 +60,3 @@ Informacion:
 			-	contraseña (admin123).
 			-	USE dbprojectpets;
 			-	SHOW TABLES;
-			
-
-		
