@@ -21,7 +21,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
 			AuthenticationException authException) throws IOException {
 		Map<String, Object> body = new HashMap<>();
 		body.put("timestamp", System.currentTimeMillis());
-		body.put("message", "El token ha expirado o no es válido");
+		body.put("message", "El token ha expirado o no es válido. Cierre sesión e inicie de nuevo.");
 		response.setContentType("application/json");
 		response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 		new ObjectMapper().writeValue(response.getOutputStream(), body);

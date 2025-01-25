@@ -1,29 +1,21 @@
 package co.com.pets.dto;
 
+import java.util.Date;
+
 public class UsuarioDTO {
 
 	private Integer idUsuario;
 	private String nombre;
 	private String apellido;
-	private String correo;
-	private Integer idRol;
-	private String rolNombre;
+	private String identificacion;
 	private String clave;
-
-	public UsuarioDTO() {
-	}
-
-	public UsuarioDTO(Integer idUsuario, String nombre, String apellido, String correo, Integer idRol, String rolNombre,
-			String clave) {
-		super();
-		this.idUsuario = idUsuario;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.correo = correo;
-		this.idRol = idRol;
-		this.rolNombre = rolNombre;
-		this.clave = clave;
-	}
+	private String correo;
+	private String telefono;
+	private Date fechaRegistro;
+	private Date fechaActualizacion;
+	private Integer idRol;
+	private String nombreRol;
+	private String direccion;
 
 	public Integer getIdUsuario() {
 		return idUsuario;
@@ -65,12 +57,12 @@ public class UsuarioDTO {
 		this.idRol = idRol;
 	}
 
-	public String getRolNombre() {
-		return rolNombre;
+	public String getNombreRol() {
+		return nombreRol;
 	}
 
-	public void setRolNombre(String rolNombre) {
-		this.rolNombre = rolNombre;
+	public void setNombreRol(String nombreRol) {
+		this.nombreRol = nombreRol;
 	}
 
 	public String getClave() {
@@ -79,6 +71,46 @@ public class UsuarioDTO {
 
 	public void setClave(String clave) {
 		this.clave = clave;
+	}
+
+	public String getIdentificacion() {
+		return identificacion;
+	}
+
+	public void setIdentificacion(String identificacion) {
+		this.identificacion = identificacion;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public Date getFechaRegistro() {
+		return fechaRegistro;
+	}
+
+	public void setFechaRegistro(Date fechaRegistro) {
+		this.fechaRegistro = fechaRegistro;
+	}
+
+	public Date getFechaActualizacion() {
+		return fechaActualizacion;
+	}
+
+	public void setFechaActualizacion(Date fechaActualizacion) {
+		this.fechaActualizacion = fechaActualizacion;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
 	}
 
 }

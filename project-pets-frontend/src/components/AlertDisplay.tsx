@@ -1,22 +1,26 @@
 import { useAlert } from '../context/AlertContext';
 
 function AlertDisplay() {
+    const { alertMessage, alertType, clearAlert } = useAlert();
 
-    const { alertMessage, clearAlert } = useAlert();
+    if (!alertMessage) return null;
 
-    if (!alertMessage) return null; // si no hay alerta, no renderiza
+    const backgroundColor = alertType === 'success' ? '#4CAF50' : '#f44336';
 
     return (
-        <div style={{
-            position: 'fixed',
-            top: '20px',
-            right: '20px',
-            backgroundColor: '#f44336',
-            color: '#fff',
-            padding: '1rem',
-            borderRadius: '4px',
-            zIndex: 9999
-        }}>
+        <div
+            style={{
+                position: 'fixed',
+                top: '20px',
+                right: '20px',
+                backgroundColor,
+                color: '#fff',
+                padding: '1rem',
+                borderRadius: '4px',
+                zIndex: 9999,
+                minWidth: '200px',
+            }}
+        >
             {alertMessage}
             <button
                 onClick={clearAlert}
@@ -25,7 +29,8 @@ function AlertDisplay() {
                     background: 'transparent',
                     border: '1px solid #fff',
                     cursor: 'pointer',
-                    color: '#fff'
+                    color: '#fff',
+                    float: 'right',
                 }}
             >
                 X

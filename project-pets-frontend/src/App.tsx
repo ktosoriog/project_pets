@@ -6,6 +6,9 @@ import DashboardAdmin from './pages/DashboardAdmin';
 import DashboardVet from './pages/DashboardVet';
 import DashboardCliente from './pages/DashboardCliente';
 import PrivateRoute from './router/PrivateRoute';
+import GestionUsuarios from './pages/GestionUsuarios';
+import GestionTipoServicio from './pages/GestionTipoServicio';
+
 
 function App() {
     return (
@@ -33,6 +36,22 @@ function App() {
                 element={
                     <PrivateRoute requiredRole="CLIENTE">
                         <DashboardCliente />
+                    </PrivateRoute>
+                }
+            />
+            <Route
+                path="/admin/usuarios"
+                element={
+                    <PrivateRoute requiredRole="ADMINISTRADOR">
+                        <GestionUsuarios />
+                    </PrivateRoute>
+                }
+            />
+            <Route
+                path="/admin/tipos-servicio"
+                element={
+                    <PrivateRoute requiredRole="ADMINISTRADOR">
+                        <GestionTipoServicio />
                     </PrivateRoute>
                 }
             />
