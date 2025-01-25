@@ -9,54 +9,92 @@ Informacion:
 	
 	Proyectos:
 	
-		project_pets_backend
+		project_pets_backend:
+		
+			Versión y Dependencias:
+				Spring Boot 3.4.1: Framework principal para el backend.
+				Java 21: Versión del JDK configurada.
+				Dependencias principales:
+					Spring Boot Starter Web: Desarrollo de API REST.
+					Spring Boot Starter Security: Implementación de seguridad (autenticación/autorización).
+					JWT (io.jsonwebtoken): Seguridad basada en JSON Web Tokens.
+					Spring Boot Starter Data JPA: Acceso a bases de datos relacionales con Hibernate.
+					MySQL Connector: Conexión a la base de datos MySQL.
+					Lombok: Simplificación de código boilerplate.
+		
+			Estructura	proyecto:
+			
+				project-pets-backend
+				└── src
+					└── main
+						└── java
+							└── co.com.pets
+								├── config             // Configuración del proyecto (seguridad, web)
+								├── constant           // Constantes globales del proyecto
+								├── controller         // Controladores para manejar solicitudes HTTP
+								├── dto                // Clases para transferencia de datos (DTOs)
+								├── entity             // Entidades que representan tablas de la base de datos
+								├── exception          // Manejo personalizado de excepciones
+								├── repository         // Interfaces de acceso a la base de datos (JPA Repositories)
+								├── service            // Servicios con lógica de negocio
+								├── service.impl       // Implementaciones de los servicios
+								├── util               // Clases utilitarias (e.g., JWT)
 		
 		project_pets_frontend:
 		
+			Tecnologías principales:
+				React 18.3.1: Biblioteca para construir interfaces de usuario.
+				React Router Dom 7.1.3: Manejo de rutas en la aplicación.
+				Axios 1.7.9: Realización de peticiones HTTP.
+				Vite 6.0.5: Herramienta para el desarrollo y construcción de aplicaciones modernas con un tiempo de respuesta rápido.
+				TypeScript 5.6.2: Tipado estático para JavaScript.
+		
 			Estructura proyecto:
 			
-				src/
-				├── assets/                     # Recursos estáticos
-				│   ├── images/                 # Carpeta para imágenes
-				│   │   └── logo.png            # Imagen de ejemplo
-				│   └── styles/                 # Estilos globales
-				│       └── global.css          # Estilos globales
-				├── components/                 # Componentes reutilizables
-				│   ├── Header.tsx              # Componente del encabezado
-				│   ├── Header.css              # Estilos específicos del Header
-				│   ├── Footer.tsx              # Componente del pie de página
-				│   ├── Footer.css              # Estilos específicos del Footer
-				│   ├── Button.tsx              # Componente de botón reutilizable
-				│   └── Button.css              # Estilos específicos del botón
-				├── pages/                      # Páginas principales
-				│   ├── Home.tsx                # Página de inicio
-				│   ├── Home.css                # Estilos específicos de la página de inicio
-				│   ├── Login.tsx               # Página de login
-				│   └── Login.css               # Estilos específicos de la página de login
-				├── services/                   # Servicios para interacciones API
-				│   └── authService.ts          # Servicio para autenticación
-				├── App.tsx                     # Configuración de rutas
-				└── main.tsx                    # Punto de entrada principal
-
+				project-pets-frontend
+				├── node_modules           // Dependencias del proyecto
+				├── public                 // Archivos públicos accesibles desde el navegador
+				├── src                    // Código fuente del proyecto
+				│   ├── assets             // Recursos como imágenes y otros archivos estáticos
+				│   │   └── images         // Imágenes del proyecto
+				│   ├── styles             // Archivos de estilos globales
+				│   ├── components         // Componentes reutilizables de la UI
+				│   ├── context            // Contexto global de React
+				│   ├── hooks              // Hooks personalizados
+				│   ├── pages              // Páginas principales de la aplicación
+				│   ├── router             // Configuración de rutas de la aplicación
+				│   ├── services           // Servicios para conexión con la API
+				│   ├── App.tsx            // Componente raíz de la aplicación
+				│   ├── main.tsx           // Punto de entrada del proyecto
+				│   ├── vite-env.d.ts      // Tipado para configuración de Vite
+				├── .env.development       // Variables de entorno para desarrollo
+				├── .env.production        // Variables de entorno para producción
+				├── default.conf           // Configuración adicional
 
 	Usuarios:
 	
 		- admin@pets.com, Password: 123456789 - Encriptado($2a$10$rKR9yfhY7FvvjvMVMs8sUu1jhWjNoiu/AhlpecpjtCBeRxZVjmNRG)
 		- vet@pets.com, Password: 123456789 - Encriptado($2a$10$rKR9yfhY7FvvjvMVMs8sUu1jhWjNoiu/AhlpecpjtCBeRxZVjmNRG)
 		- cliente@pets.com, Password: 123456789 - Encriptado($2a$10$rKR9yfhY7FvvjvMVMs8sUu1jhWjNoiu/AhlpecpjtCBeRxZVjmNRG)
+		
+	AWS
 	
+		URL:	https://aws-aleosp.signin.aws.amazon.com/console
+		User:	aospinarosero
 	
-	Comandos despliegue EC2:
-	
-		-	docker-compose build
-		-	docker-compose up -d
-		-	docker-compose ps
-		-	docker logs project-pets-backend
-		-	docker-compose down
-		-	docker volume rm project_pets_db_data 
-		-	Comandos BD:
-			-	docker exec -it project-pets-db bash
-			-	mysql -u admin -p
-			-	contraseña (admin123).
-			-	USE dbprojectpets;
-			-	SHOW TABLES;
+		Comandos despliegue EC2:
+		
+			-	URL front: http://ec2-52-7-157-2.compute-1.amazonaws.com/
+			-	URL front Back: http://ec2-52-7-157-2.compute-1.amazonaws.com:8080/
+			-	docker-compose build
+			-	docker-compose up -d
+			-	docker-compose ps
+			-	docker logs project-pets-backend
+			-	docker-compose down
+			-	docker volume rm project_pets_db_data 
+			-	Comandos BD:
+				-	docker exec -it project-pets-db bash
+				-	mysql -u admin -p
+				-	contraseña (admin123).
+				-	USE dbprojectpets;
+				-	SHOW TABLES
