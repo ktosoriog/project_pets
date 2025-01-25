@@ -52,4 +52,10 @@ public class AuthController {
 		}
 		return usuario;
 	}
+
+	@PostMapping("/registro-cliente")
+	public UsuarioDTO registroCliente(@RequestBody UsuarioDTO dto) {
+		dto.setIdRol(3);
+		return usuarioService.crearUsuario(dto);
+	}
 }

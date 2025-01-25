@@ -18,3 +18,10 @@ VALUES
 
 ('Juan', 'Cliente', 'cliente@pets.com',
  '$2a$10$rKR9yfhY7FvvjvMVMs8sUu1jhWjNoiu/AhlpecpjtCBeRxZVjmNRG', 3); -- CLIENTE
+ 
+ -- Ajuste tabla usuario
+ ALTER TABLE `dbprojectpets`.`usuario` 
+CHANGE COLUMN `Direccion` `Direccion` VARCHAR(45) NULL ,
+ADD UNIQUE INDEX `Correo_UNIQUE` (`Correo` ASC) VISIBLE;
+
+ALTER TABLE usuario CHANGE COLUMN FechaBaja FechaActualizacion DATE;

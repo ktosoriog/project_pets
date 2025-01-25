@@ -8,6 +8,11 @@ interface LoginResponse {
     rol: string;
 }
 
+export function getAuthToken(): string {
+    const token = localStorage.getItem('authToken');
+    return token ?? '';
+}
+
 export async function login(correo: string, clave: string): Promise<LoginResponse> {
     try {
         const resp = await axios.post<LoginResponse>(`${API_URL}/api/auth/login`, { correo, clave });
