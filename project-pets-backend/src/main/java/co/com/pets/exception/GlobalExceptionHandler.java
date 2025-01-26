@@ -19,21 +19,21 @@ public class GlobalExceptionHandler {
 
 	@ExceptionHandler(ObjetoNoEncontradoException.class)
 	public ResponseEntity<Object> handleObjetoNoEncontradoException(ObjetoNoEncontradoException ex) {
-		log.error(ERROR_KEY, ex);
+		log.error(ERROR_KEY, ex.getMessage());
 		return ResponseEntity.status(HttpStatus.NOT_FOUND)
 				.body(Map.of(KEY_MESSAGE, ex.getMessage(), KEY_TIMESTAMP, System.currentTimeMillis()));
 	}
 
 	@ExceptionHandler(OperacionInvalidaException.class)
 	public ResponseEntity<Object> handleOperacionInvalidaException(OperacionInvalidaException ex) {
-		log.error(ERROR_KEY, ex);
+		log.error(ERROR_KEY, ex.getMessage());
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST)
 				.body(Map.of(KEY_MESSAGE, ex.getMessage(), KEY_TIMESTAMP, System.currentTimeMillis()));
 	}
 
 	@ExceptionHandler(NoAutorizadoException.class)
 	public ResponseEntity<Object> handleNoAutorizadoException(NoAutorizadoException ex) {
-		log.error(ERROR_KEY, ex);
+		log.error(ERROR_KEY, ex.getMessage());
 		return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
 				.body(Map.of(KEY_MESSAGE, ex.getMessage(), KEY_TIMESTAMP, System.currentTimeMillis()));
 	}
