@@ -6,7 +6,11 @@ Informacion:
 		Repositorio: project_pets
 		URL Git: git clone https://github.com/ktosoriog/project_pets.git
 		Password: ktosoriog.2024*
-	
+		
+	Google (Envio de correos)
+		Email: petprojectapi@gmail.com
+		Password: ktosoriog.2024*		
+		
 	Proyectos:
 	
 		project_pets_backend:

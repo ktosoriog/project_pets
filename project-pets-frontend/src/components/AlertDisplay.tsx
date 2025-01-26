@@ -1,6 +1,7 @@
 import { useAlert } from '../context/AlertContext';
 
 function AlertDisplay() {
+
     const { alertMessage, alertType, clearAlert } = useAlert();
 
     if (!alertMessage) return null;

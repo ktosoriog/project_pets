@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../services/authService';
-import './menuAdmin.css'; // Estilos específicos del menú
+import './menuAdmin.css';
 
 interface MenuAdminProps {
     titulo?: string;
