@@ -1,6 +1,4 @@
-import axios from 'axios';
-
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+import { post, put } from './../util/api';
 
 interface LoginResponse {
     token: string;
@@ -14,26 +12,16 @@ export function getAuthToken(): string {
 }
 
 export async function login(correo: string, clave: string): Promise<LoginResponse> {
-    try {
-        const resp = await axios.post<LoginResponse>(`${API_URL}/api/auth/login`, { correo, clave });
-        localStorage.setItem('authToken', resp.data.token);
-        localStorage.setItem('userRole', resp.data.rol);
-        localStorage.setItem('userEmail', resp.data.correo);
-        return resp.data;
-    } catch (error: unknown) {
-        if (axios.isAxiosError(error)) {
-            const serverMessage = (error.response?.data as { message?: string })?.message;
-            if (serverMessage) {
-                throw new Error(serverMessage);
-            }
-            if (error.request) {
-                throw new Error('No hay conexión con el servidor');
-            }
-            throw new Error('Error en el servidor');
-        }
-        throw new Error('Error desconocido');
-    }
+    const response = await post<LoginResponse, { correo: string; clave: string }>(
+        '/api/auth/login',
+        { correo, clave }
+    );
+    localStorage.setItem('authToken', response.token);
+    localStorage.setItem('userRole', response.rol);
+    localStorage.setItem('userEmail', response.correo);
+    return response;
 }
+
 
 export function estaLogueado(): boolean {
     return !!localStorage.getItem('authToken');
@@ -47,4 +35,28 @@ export function logout(): void {
     localStorage.removeItem('authToken');
     localStorage.removeItem('userRole');
     localStorage.removeItem('userEmail');
+}
+
+export async function registroCliente(usuario: {
+    nombre: string;
+    apellido: string;
+    identificacion: string;
+    direccion: string;
+    telefono: string;
+    correo: string;
+    clave: string;
+}): Promise<void> {
+    await post('/api/auth/registro-cliente', usuario);
+}
+
+export async function solicitarRestablecerClave(correo: string): Promise<string> {
+    return post<string, null>('/api/auth/solicitar-restablecer-clave', null, {
+        params: { correo }
+    });
+}
+
+export async function restablecerClave(token: string, nuevaClave: string): Promise<string> {
+    return put<string, null>('/api/auth/restablecer-clave', null, {
+        params: { token, nuevaClave }
+    });
 }

@@ -25,7 +25,7 @@ export const AlertProvider = ({ children }: { children: ReactNode }) => {
         setAlertType(type);
         setTimeout(() => {
             clearAlert();
-        }, 5000);
+        }, 10000);
     };
 
     const clearAlert = () => {
