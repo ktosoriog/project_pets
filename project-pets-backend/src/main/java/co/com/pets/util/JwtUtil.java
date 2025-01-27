@@ -5,7 +5,10 @@ import java.util.Date;
 
 import org.springframework.stereotype.Component;
 
-import io.jsonwebtoken.*;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 
 @Component
@@ -15,8 +18,8 @@ public class JwtUtil {
 
 	private long expiration = 3600000;
 
-	public String generarToken(String correo, String rol) {
-		return Jwts.builder().setSubject(correo).claim("rol", rol).setIssuedAt(new Date())
+	public String generarToken(String correo, String rol, Integer idUsuario) {
+		return Jwts.builder().setSubject(correo).claim("rol", rol).claim("idUsuario", idUsuario).setIssuedAt(new Date())
 				.setExpiration(new Date(System.currentTimeMillis() + expiration)).signWith(secretKey).compact();
 	}
 
@@ -37,4 +40,10 @@ public class JwtUtil {
 		Claims claims = Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token).getBody();
 		return claims.get("rol", String.class);
 	}
+
+	public Integer obtenerIdUsuario(String token) {
+		Claims claims = Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token).getBody();
+		return claims.get("idUsuario", Integer.class);
+	}
+
 }

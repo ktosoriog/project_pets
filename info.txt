@@ -9,7 +9,10 @@ Informacion:
 		
 	Google (Envio de correos)
 		Email: petprojectapi@gmail.com
-		Password: ktosoriog.2024*		
+		Password: ktosoriog.2024*
+		#Configuracion de Spring
+			spring.mail.username=petprojectapi@gmail.com
+			spring.mail.password=zxay aaep ajwe sznm
 		
 	Proyectos:
 	

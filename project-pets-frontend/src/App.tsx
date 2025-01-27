@@ -9,6 +9,7 @@ import PrivateRoute from './router/PrivateRoute';
 import GestionUsuarios from './pages/GestionUsuarios';
 import GestionTipoServicio from './pages/GestionTipoServicio';
 import RestablecerClave from './pages/RestablecerClave';
+import GestionMascotasAdmin from './pages/GestionMascotasAdmin';
 
 function App() {
     return (
@@ -53,6 +54,14 @@ function App() {
                     element={
                         <PrivateRoute requiredRole="ADMINISTRADOR">
                             <GestionTipoServicio />
+                        </PrivateRoute>
+                    }
+                />
+                <Route
+                    path="/admin/gestion-mascotas"
+                    element={
+                        <PrivateRoute requiredRole="ADMINISTRADOR">
+                            <GestionMascotasAdmin />
                         </PrivateRoute>
                     }
                 />

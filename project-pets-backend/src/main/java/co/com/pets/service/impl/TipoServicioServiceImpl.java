@@ -43,7 +43,6 @@ public class TipoServicioServiceImpl implements TipoServicioService {
 				|| dto.getDescripcion() == null || dto.getDescripcion().isBlank()) {
 			throw new OperacionInvalidaException("Todos los campos son obligatorios");
 		}
-
 		TipoServicio ts = convertirAEntidad(dto, null);
 		var guardado = tipoServicioRepo.save(ts);
 		return convertirADTO(guardado);
@@ -53,13 +52,10 @@ public class TipoServicioServiceImpl implements TipoServicioService {
 	public TipoServicioDTO actualizar(Integer id, TipoServicioDTO dto) {
 		var existente = tipoServicioRepo.findById(id)
 				.orElseThrow(() -> new ObjetoNoEncontradoException("TipoServicio no encontrado con id: " + id));
-
-		// Validar campos obligatorios
 		if (dto.getNombre() == null || dto.getNombre().isBlank() || dto.getPrecio() == null
 				|| dto.getDescripcion() == null || dto.getDescripcion().isBlank()) {
 			throw new OperacionInvalidaException("Todos los campos son obligatorios");
 		}
-
 		TipoServicio ts = convertirAEntidad(dto, existente);
 		var guardado = tipoServicioRepo.save(ts);
 		return convertirADTO(guardado);
@@ -72,7 +68,6 @@ public class TipoServicioServiceImpl implements TipoServicioService {
 		tipoServicioRepo.delete(existente);
 	}
 
-	// Métodos privados de mapeo
 	private TipoServicioDTO convertirADTO(TipoServicio ts) {
 		TipoServicioDTO dto = new TipoServicioDTO();
 		dto.setIdTipoServ(ts.getIdTipoServ());
