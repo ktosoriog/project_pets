@@ -37,7 +37,7 @@ public class AuthServiceImpl implements AuthService {
 		}
 
 		String rol = usuario.getRol().getNomRol(); // "ADMINISTRADOR", "VETERINARIO", "CLIENTE"
-		String token = jwtUtil.generarToken(usuario.getCorreo(), rol);
+		String token = jwtUtil.generarToken(usuario.getCorreo(), rol, usuario.getIdUsuario());
 		return new LoginResponseDTO(token, usuario.getCorreo(), rol);
 	}
 }
