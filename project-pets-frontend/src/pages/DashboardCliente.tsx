@@ -1,28 +1,26 @@
+import MenuCliente from '../components/MenuCliente';
+import { getNombre } from '../services/authService';
 import './dashboard.css';
-import { logout } from '../services/authService';
-import { useNavigate } from 'react-router-dom';
 
 function DashboardCliente() {
-
-    const navigate = useNavigate();
-
-    const handleLogout = () => {
-        logout();
-        navigate('/login');
-    };
-
+    const nombre = getNombre() ?? 'Cliente';
     return (
         <div className="dashboard-container">
-            <div className="sidebar">
-                <h2>Cliente</h2>
-                <a href="#">Mis Mascotas</a>
-                <a href="#">Mis Servicios</a>
-                <button className="logout-btn" onClick={handleLogout}>
-                    Cerrar Sesión
-                </button>
-            </div>
+            <MenuCliente />
             <div className="content">
-                <h1>Bienvenido Cliente</h1>
+                <h1>Bienvenido, {nombre}</h1>
+                <p className="welcome-text">
+                    En tu panel de control, podrás gestionar todas las actividades relacionadas con tus mascotas y servicios. Aquí tienes un resumen de lo que puedes hacer:
+                </p>
+                <ul className="functionality-list">
+                    <li><strong>Gestión de Mascotas:</strong> Añade, edita o elimina la información de tus mascotas.</li>
+                    <li><strong>Reservar Servicios:</strong> Agenda citas para tus mascotas seleccionando el tipo de servicio, fecha, hora y veterinario.</li>
+                    <li><strong>Ver Historial:</strong> Consulta el historial de servicios y las historias clínicas de tus mascotas.</li>
+                    <li><strong>Cancelar Servicios:</strong> Si es necesario, puedes cancelar servicios que no hayan iniciado.</li>
+                </ul>
+                <p className="welcome-text">
+                    ¡Gracias por confiar en nosotros para el cuidado de tus mascotas!
+                </p>
             </div>
         </div>
     );

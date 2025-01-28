@@ -45,7 +45,7 @@ function ModalRegistroCliente({ onClose, show }: ModalRegistroClienteProps) {
             return;
         }
 
-        setIsSubmitting(true); // Desactivar botón para evitar múltiples envíos
+        setIsSubmitting(true);
 
         try {
             await registroCliente({
@@ -74,7 +74,7 @@ function ModalRegistroCliente({ onClose, show }: ModalRegistroClienteProps) {
                 showAlert(error.message, 'error');
             }
         } finally {
-            setIsSubmitting(false); // Rehabilitar botón después de éxito/error
+            setIsSubmitting(false);
         }
     }
 

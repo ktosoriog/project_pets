@@ -4,6 +4,8 @@ interface LoginResponse {
     token: string;
     correo: string;
     rol: string;
+    idUsuario: string;
+    nombreUsuario: string;
 }
 
 export function getAuthToken(): string {
@@ -19,6 +21,8 @@ export async function login(correo: string, clave: string): Promise<LoginRespons
     localStorage.setItem('authToken', response.token);
     localStorage.setItem('userRole', response.rol);
     localStorage.setItem('userEmail', response.correo);
+    localStorage.setItem('idUsuario', response.idUsuario);
+    localStorage.setItem('nombreUsuario', response.nombreUsuario);
     return response;
 }
 
@@ -59,4 +63,12 @@ export async function restablecerClave(token: string, nuevaClave: string): Promi
     return put<string, null>('/api/auth/restablecer-clave', null, {
         params: { token, nuevaClave }
     });
+}
+
+export function getNombre(): string {
+    return localStorage.getItem('nombreUsuario') ?? '';
+}
+
+export function idUsuario(): string {
+    return localStorage.getItem('idUsuario') ?? '';
 }

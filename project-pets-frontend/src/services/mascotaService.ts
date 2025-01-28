@@ -1,4 +1,3 @@
-// src/services/mascotaService.ts
 import { get, post, put, del } from '../util/api';
 
 export interface Mascota {

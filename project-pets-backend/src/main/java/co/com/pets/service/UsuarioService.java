@@ -22,4 +22,6 @@ public interface UsuarioService {
 
 	Page<UsuarioDTO> listarPaginado(int pagina, int size);
 
+	List<UsuarioDTO> listarClientesConFiltro(String filtro);
+
 }

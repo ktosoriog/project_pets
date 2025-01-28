@@ -35,9 +35,8 @@ public class AuthServiceImpl implements AuthService {
 		if (!passwordEncoder.matches(loginRequest.getClave(), usuario.getClave())) {
 			throw new OperacionInvalidaException(MensajesConstant.CLAVE_INCORRECTA);
 		}
-
 		String rol = usuario.getRol().getNomRol(); // "ADMINISTRADOR", "VETERINARIO", "CLIENTE"
 		String token = jwtUtil.generarToken(usuario.getCorreo(), rol, usuario.getIdUsuario());
-		return new LoginResponseDTO(token, usuario.getCorreo(), rol);
+		return new LoginResponseDTO(token, usuario.getCorreo(), rol, usuario.getIdUsuario(), usuario.getNomUsuario());
 	}
 }
