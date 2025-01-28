@@ -9,7 +9,8 @@ import PrivateRoute from './router/PrivateRoute';
 import GestionUsuarios from './pages/GestionUsuarios';
 import GestionTipoServicio from './pages/GestionTipoServicio';
 import RestablecerClave from './pages/RestablecerClave';
-import GestionMascotasAdmin from './pages/GestionMascotasAdmin';
+import GestionClientesAdmin from './pages/GestionClientesAdmin';
+import GestionMascotasPorCliente from './pages/GestionMascotasPorCliente';
 
 function App() {
     return (
@@ -58,10 +59,26 @@ function App() {
                     }
                 />
                 <Route
-                    path="/admin/gestion-mascotas"
+                    path="/admin/clientes"
                     element={
                         <PrivateRoute requiredRole="ADMINISTRADOR">
-                            <GestionMascotasAdmin />
+                            <GestionClientesAdmin />
+                        </PrivateRoute>
+                    }
+                />
+                <Route
+                    path="/admin/gestion-mascotas-cliente/:idCliente"
+                    element={
+                        <PrivateRoute requiredRole="ADMINISTRADOR">
+                            <GestionMascotasPorCliente />
+                        </PrivateRoute>
+                    }
+                />
+                <Route
+                    path="/cliente/gestion-mascotas"
+                    element={
+                        <PrivateRoute requiredRole="CLIENTE">
+                            <GestionMascotasPorCliente />
                         </PrivateRoute>
                     }
                 />

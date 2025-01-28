@@ -56,4 +56,9 @@ public class UsuarioController {
 		return usuarioService.listarPaginado(pagina, 10);
 	}
 
+	@GetMapping("/clientes")
+	public List<UsuarioDTO> listarClientesConFiltro(@RequestParam(required = false) String filtro) {
+		return usuarioService.listarClientesConFiltro(filtro);
+	}
+
 }

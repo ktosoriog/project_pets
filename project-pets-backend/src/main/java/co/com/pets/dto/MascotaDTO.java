@@ -3,18 +3,16 @@ package co.com.pets.dto;
 import java.util.Date;
 
 public class MascotaDTO {
-	private Integer idMascota;
-	private String nombre; // NomMascota
-	private Date fechaNacimiento;
 
+	private Integer idMascota;
+	private String nombre;
+	private Date fechaNacimiento;
 	private Integer idRaza;
 	private String nomRaza;
 	private Integer idEspecie;
 	private String nomEspecie;
-
-	// Dueño
-	private Integer idDueno; // idUsuario del dueño
-	private String nombreDueno; // Nombre completo
+	private Integer idDueno;
+	private String nombreDueno;
 	private String identificacionDueno;
 
 	public Integer getIdMascota() {

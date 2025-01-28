@@ -1,5 +1,6 @@
 package co.com.pets.service.impl;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Date;
 import java.util.List;
 
@@ -115,7 +116,21 @@ public class UsuarioServiceImpl implements UsuarioService {
 	public void eliminarUsuario(Integer id) {
 		Usuario existente = usuarioRepository.findById(id)
 				.orElseThrow(() -> new ObjetoNoEncontradoException("Usuario no encontrado con id " + id));
-		usuarioRepository.delete(existente);
+		try {
+			usuarioRepository.delete(existente);
+		} catch (DataIntegrityViolationException ex) {
+			Throwable causaRaiz = ex.getRootCause();
+			if (causaRaiz instanceof SQLIntegrityConstraintViolationException) {
+				String mensajeError = causaRaiz.getMessage();
+				if (mensajeError != null && mensajeError.contains("fk_cliente_usuario")) {
+					String nombreUsuario = existente.getNomUsuario() != null ? existente.getNomUsuario()
+							: "con ID " + existente.getIdUsuario();
+					throw new OperacionInvalidaException("No se puede eliminar al usuario '" + nombreUsuario + "'. "
+							+ "Tiene mascotas asociadas en su registro de cliente.");
+				}
+			}
+			throw ex;
+		}
 	}
 
 	@Override
@@ -124,6 +139,25 @@ public class UsuarioServiceImpl implements UsuarioService {
 		var page = usuarioRepository.findAll(pageable);
 		var dtos = page.getContent().stream().map(this::convertirAUsuarioDTO).toList();
 		return new PageImpl<>(dtos, pageable, page.getTotalElements());
+	}
+
+	@Override
+	public List<UsuarioDTO> listarClientesConFiltro(String filtro) {
+		// Buscar todos los usuarios con rol CLIENTE
+		int rolCliente = 3;
+		List<Usuario> lista = usuarioRepository.findAll().stream()
+				.filter(u -> u.getRol() != null && u.getRol().getIdRol() == rolCliente).toList();
+		if (filtro != null && !filtro.isBlank()) {
+			String filtroLower = filtro.toLowerCase();
+			lista = lista.stream().filter(u -> {
+				// filtras por nombre, apellido o identificacion
+				String nombreCompleto = (u.getNomUsuario() + " " + u.getApeUsuario()).toLowerCase();
+				String identif = (u.getIdentificacion() == null) ? "" : u.getIdentificacion().toLowerCase();
+				return nombreCompleto.contains(filtroLower) || identif.contains(filtroLower);
+			}).toList();
+		}
+
+		return lista.stream().map(this::convertirAUsuarioDTO).toList();
 	}
 
 	private UsuarioDTO convertirAUsuarioDTO(Usuario usuario) {

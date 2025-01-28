@@ -36,3 +36,9 @@ export async function actualizarUsuario(id: number, usuario: Usuario): Promise<U
 export async function eliminarUsuario(id: number): Promise<void> {
     return del(`/api/admin/usuarios/${id}`);
 }
+
+export async function listarClientesConFiltro(filtro: string): Promise<Usuario[]> {
+    return get<Usuario[]>(`/api/admin/usuarios/clientes`, {
+        params: { filtro },
+    });
+}

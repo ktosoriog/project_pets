@@ -37,7 +37,6 @@ function GestionUsuarios() {
         { id: 3, name: 'CLIENTE' },
     ];
 
-    // Cargar usuarios cada vez que cambie "pagina"
     useEffect(() => {
         cargarUsuarios();
     }, [pagina]);
@@ -73,7 +72,7 @@ function GestionUsuarios() {
         setEditandoId(u.idUsuario ?? null);
         setUsuarioForm({
             ...u,
-            clave: '', // no sobreescribir
+            clave: '',
         });
         setShowModal(true);
     }

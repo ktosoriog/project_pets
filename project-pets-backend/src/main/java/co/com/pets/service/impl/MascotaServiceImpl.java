@@ -102,7 +102,6 @@ public class MascotaServiceImpl implements MascotaService {
 		List<Cliente> listaCliente = clienteRepo.findAll().stream()
 				.filter(c -> c.getUsuario().getIdUsuario().equals(idUsuario)).toList();
 		List<Mascota> mascotas = listaCliente.stream().map(Cliente::getMascota).toList();
-		// Paginación manual (simple)
 		int start = pagina * size;
 		int end = Math.min(start + size, mascotas.size());
 		List<Mascota> subList = mascotas.subList(start, end);
