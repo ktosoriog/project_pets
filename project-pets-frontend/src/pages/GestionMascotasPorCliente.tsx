@@ -36,25 +36,26 @@ function GestionMascotasPorCliente() {
     // Paginación
     const [pagina, setPagina] = useState(0);
     const [totalPaginas, setTotalPaginas] = useState(0);
+    const [filtro, setFiltro] = useState('');
 
     useEffect(() => {
         cargarEspecies();
         cargarMascotas();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [pagina]);
+    }, [pagina, filtro]);
 
     async function cargarMascotas() {
         try {
             if (rolUsuario === 'ADMINISTRADOR') {
                 // Administrador: listar mascotas del cliente con paginación
-                const resp = await listarMascotasAdminPaginado(pagina);
+                const resp = await listarMascotasAdminPaginado(pagina, filtro);
                 // Filtrar las que correspondan al cliente
                 const filtradas = resp.content.filter(m => m.idDueno === idDueno);
                 setMascotas(filtradas);
                 setTotalPaginas(resp.totalPages);
             } else if (rolUsuario === 'CLIENTE') {
                 // Cliente: listar sus propias mascotas con paginación
-                const resp = await listarMascotasClientePaginado(pagina);
+                const resp = await listarMascotasClientePaginado(pagina, filtro);
                 setMascotas(resp.content);
                 setTotalPaginas(resp.totalPages);
             }
@@ -240,6 +241,12 @@ function GestionMascotasPorCliente() {
                     </div>
                 )}
                 <div className="top-actions">
+                    <input
+                        type="text"
+                        placeholder="Buscar por nombre, especie o raza..."
+                        value={filtro}
+                        onChange={(e) => setFiltro(e.target.value)}
+                    />
                     <button className="btn-primario" onClick={handleModalCrear}>Crear Mascota</button>
                     <button className="btn-secundario" onClick={exportCSV}>Exportar CSV</button>
                 </div>

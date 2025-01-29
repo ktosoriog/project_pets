@@ -30,10 +30,21 @@ public class TipoServicioServiceImpl implements TipoServicioService {
 	}
 
 	@Override
-	public Page<TipoServicioDTO> listarPaginado(int pagina, int size) {
+	public Page<TipoServicioDTO> listarPaginado(int pagina, int size, String filtro) {
 		Pageable pageable = PageRequest.of(pagina, size);
-		var page = tipoServicioRepo.findAll(pageable);
-		var dtos = page.getContent().stream().map(this::convertirADTO).toList();
+		Page<TipoServicio> page = tipoServicioRepo.findAll(pageable);
+		List<TipoServicio> listaFiltrada = page.getContent().stream().filter(ts -> {
+			if (filtro == null || filtro.trim().isEmpty())
+				return true;
+			String lowerFiltro = filtro.toLowerCase();
+			boolean coincideNombre = (ts.getNombreServ() != null)
+					&& ts.getNombreServ().toLowerCase().contains(lowerFiltro);
+			boolean coincideDescripcion = (ts.getDescripcion() != null)
+					&& ts.getDescripcion().toLowerCase().contains(lowerFiltro);
+			return coincideNombre || coincideDescripcion;
+		}).toList();
+
+		List<TipoServicioDTO> dtos = listaFiltrada.stream().map(this::convertirADTO).toList();
 		return new PageImpl<>(dtos, pageable, page.getTotalElements());
 	}
 

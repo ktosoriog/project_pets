@@ -8,9 +8,10 @@ export interface TipoServicio {
 }
 
 export async function listarTipoServiciosPaginado(
-    pagina: number
+    pagina: number,
+    filtro: string
 ): Promise<{ content: TipoServicio[]; totalPages: number; totalElements: number }> {
-    return get('/api/admin/tipos-servicio', { params: { pagina } });
+    return get('/api/admin/tipos-servicio', { params: { pagina, filtro } });
 }
 
 export async function listarTipoServiciosTodo(): Promise<TipoServicio[]> {

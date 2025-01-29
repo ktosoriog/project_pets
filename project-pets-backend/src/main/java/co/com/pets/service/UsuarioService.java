@@ -20,7 +20,7 @@ public interface UsuarioService {
 
 	void eliminarUsuario(Integer id);
 
-	Page<UsuarioDTO> listarPaginado(int pagina, int size);
+	Page<UsuarioDTO> listarPaginado(int pagina, int size, String filtro);
 
 	List<UsuarioDTO> listarClientesConFiltro(String filtro);
 

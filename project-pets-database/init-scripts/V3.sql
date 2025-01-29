@@ -129,3 +129,33 @@ ALTER TABLE mascota
 ALTER TABLE mascota
   DROP COLUMN Especie,
   DROP COLUMN Raza;
+  
+-- ========================================
+-- ELIMINAR RELACIÓN O TABLA PRODUCTO SI EXISTE
+-- (Opcional, dependiendo de tu caso)
+-- ========================================
+ALTER TABLE `dbprojectpets`.`servicio` 
+DROP FOREIGN KEY `fk_servicio_producto`;
+ALTER TABLE `dbprojectpets`.`servicio` 
+DROP COLUMN `idProducto`,
+DROP INDEX `fk_servicio_producto` ;
+DROP TABLE IF EXISTS inventario;
+DROP TABLE IF EXISTS producto;
+
+-- ========================================
+-- CREACIÓN DE NUEVA TABLA inventario
+-- UNIFICADA CON INFORMACIÓN DE PRODUCTO
+-- ========================================
+CREATE TABLE inventario (
+  idInventario INT AUTO_INCREMENT PRIMARY KEY,
+  CodigoProducto VARCHAR(45),
+  NomProducto VARCHAR(45),
+  PrecioUnitario DOUBLE,
+  Descripcion VARCHAR(255),
+  CanDisponible INT,
+  Ingreso DATE,
+  Salida DATE,
+  StopMin INT
+) ENGINE=InnoDB;
+ALTER TABLE `dbprojectpets`.`inventario` 
+ADD UNIQUE INDEX `CodigoProducto_UNIQUE` (`CodigoProducto` ASC) VISIBLE;

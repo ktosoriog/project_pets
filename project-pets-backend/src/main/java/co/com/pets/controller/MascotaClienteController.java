@@ -34,9 +34,9 @@ public class MascotaClienteController {
 
 	@GetMapping
 	public Page<MascotaDTO> listarPaginado(@RequestHeader("Authorization") String authHeader,
-			@RequestParam(defaultValue = "0") int pagina) {
+			@RequestParam(defaultValue = "0") int pagina, @RequestParam(defaultValue = "") String filtro) {
 		Integer idUsuario = obtenerIdUsuarioDesdeToken(authHeader);
-		return mascotaService.listarPaginadoPorUsuario(pagina, 10, idUsuario);
+		return mascotaService.listarPaginadoPorUsuario(pagina, 10, idUsuario, filtro);
 	}
 
 	@GetMapping("/todo")

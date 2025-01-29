@@ -157,3 +157,14 @@
 .usuarios-table td:nth-child(2) {
     font-family: monospace;
 }
+
+.top-actions input {
+    flex: none;
+    /* Evita que crezca más allá de su tamaño definido */
+    width: 400px;
+    /* Ajusta el ancho del input */
+    max-width: 50%;
+    /* Evita que sea demasiado grande en pantallas anchas */
+    padding: 0.4rem;
+    font-size: 0.95rem;
+}

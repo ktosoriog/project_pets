@@ -8,7 +8,7 @@ import co.com.pets.dto.MascotaDTO;
 
 public interface MascotaService {
 
-	Page<MascotaDTO> listarPaginado(int pagina, int size);
+	Page<MascotaDTO> listarPaginado(int pagina, int size, String filtro);
 
 	List<MascotaDTO> listarTodo();
 
@@ -19,7 +19,7 @@ public interface MascotaService {
 	void eliminar(Integer id);
 
 	// Filtrar por idUsuario (Cliente)
-	Page<MascotaDTO> listarPaginadoPorUsuario(int pagina, int size, Integer idUsuario);
+	Page<MascotaDTO> listarPaginadoPorUsuario(int pagina, int size, Integer idUsuario, String filtro);
 
 	List<MascotaDTO> listarTodoPorUsuario(Integer idUsuario);
 

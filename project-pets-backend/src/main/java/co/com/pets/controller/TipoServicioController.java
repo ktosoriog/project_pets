@@ -19,8 +19,9 @@ public class TipoServicioController {
 	}
 
 	@GetMapping
-	public Page<TipoServicioDTO> listarPaginado(@RequestParam(defaultValue = "0") int pagina) {
-		return tipoServicioService.listarPaginado(pagina, 10);
+	public Page<TipoServicioDTO> listarPaginado(@RequestParam(defaultValue = "0") int pagina,
+			@RequestParam(defaultValue = "") String filtro) {
+		return tipoServicioService.listarPaginado(pagina, 10, filtro);
 	}
 
 	@GetMapping("/todo")

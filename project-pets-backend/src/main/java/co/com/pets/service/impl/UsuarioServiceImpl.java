@@ -134,10 +134,27 @@ public class UsuarioServiceImpl implements UsuarioService {
 	}
 
 	@Override
-	public Page<UsuarioDTO> listarPaginado(int pagina, int size) {
+	public Page<UsuarioDTO> listarPaginado(int pagina, int size, String filtro) {
 		Pageable pageable = PageRequest.of(pagina, size);
-		var page = usuarioRepository.findAll(pageable);
-		var dtos = page.getContent().stream().map(this::convertirAUsuarioDTO).toList();
+		Page<Usuario> page = usuarioRepository.findAll(pageable);
+		List<Usuario> listaFiltrada = page.getContent().stream().filter(usuario -> {
+			if (filtro == null || filtro.trim().isEmpty())
+				return true;
+			String lowerFiltro = filtro.toLowerCase();
+			boolean coincideIdentificacion = (usuario.getIdentificacion() != null)
+					&& usuario.getIdentificacion().toLowerCase().contains(lowerFiltro);
+			boolean coincideNombre = (usuario.getNomUsuario() != null)
+					&& usuario.getNomUsuario().toLowerCase().contains(lowerFiltro);
+			boolean coincideApellido = (usuario.getApeUsuario() != null)
+					&& usuario.getApeUsuario().toLowerCase().contains(lowerFiltro);
+			boolean coincideCorreo = (usuario.getCorreo() != null)
+					&& usuario.getCorreo().toLowerCase().contains(lowerFiltro);
+			boolean coincideRol = (usuario.getRol() != null && usuario.getRol().getNomRol() != null)
+					&& usuario.getRol().getNomRol().toLowerCase().contains(lowerFiltro);
+			return coincideIdentificacion || coincideNombre || coincideApellido || coincideCorreo || coincideRol;
+		}).toList();
+
+		List<UsuarioDTO> dtos = listaFiltrada.stream().map(this::convertirAUsuarioDTO).toList();
 		return new PageImpl<>(dtos, pageable, page.getTotalElements());
 	}
 

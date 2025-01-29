@@ -39,10 +39,22 @@ public class MascotaServiceImpl implements MascotaService {
 	}
 
 	@Override
-	public Page<MascotaDTO> listarPaginado(int pagina, int size) {
+	public Page<MascotaDTO> listarPaginado(int pagina, int size, String filtro) {
 		Pageable pageable = PageRequest.of(pagina, size);
 		Page<Mascota> page = mascotaRepo.findAll(pageable);
-		List<MascotaDTO> dtos = page.getContent().stream().map(this::convertirADTO).toList();
+		List<Mascota> listaFiltrada = page.getContent().stream().filter(m -> {
+			if (filtro == null || filtro.trim().isEmpty())
+				return true;
+			String lowerFiltro = filtro.toLowerCase();
+			boolean coincideNombre = (m.getNomMascota() != null)
+					&& m.getNomMascota().toLowerCase().contains(lowerFiltro);
+			boolean coincideEspecie = (m.getRaza().getEspecie() != null)
+					&& m.getRaza().getEspecie().getNomEspecie().toLowerCase().contains(lowerFiltro);
+			boolean coincideRaza = (m.getRaza() != null)
+					&& m.getRaza().getNomRaza().toLowerCase().contains(lowerFiltro);
+			return coincideNombre || coincideEspecie || coincideRaza;
+		}).toList();
+		List<MascotaDTO> dtos = listaFiltrada.stream().map(this::convertirADTO).toList();
 		return new PageImpl<>(dtos, pageable, page.getTotalElements());
 	}
 
@@ -97,23 +109,34 @@ public class MascotaServiceImpl implements MascotaService {
 	}
 
 	@Override
-	public Page<MascotaDTO> listarPaginadoPorUsuario(int pagina, int size, Integer idUsuario) {
+	public Page<MascotaDTO> listarPaginadoPorUsuario(int pagina, int size, Integer idUsuario, String filtro) {
 		// 1) Buscar en "cliente" las mascotas para idUsuario
 		List<Cliente> listaCliente = clienteRepo.findAll().stream()
 				.filter(c -> c.getUsuario().getIdUsuario().equals(idUsuario)).toList();
 		List<Mascota> mascotas = listaCliente.stream().map(Cliente::getMascota).toList();
+		List<Mascota> listaFiltrada = mascotas.stream().filter(m -> {
+			if (filtro == null || filtro.trim().isEmpty())
+				return true;
+			String lowerFiltro = filtro.toLowerCase();
+			boolean coincideNombre = (m.getNomMascota() != null)
+					&& m.getNomMascota().toLowerCase().contains(lowerFiltro);
+			boolean coincideEspecie = (m.getRaza().getEspecie() != null)
+					&& m.getRaza().getEspecie().getNomEspecie().toLowerCase().contains(lowerFiltro);
+			boolean coincideRaza = (m.getRaza() != null)
+					&& m.getRaza().getNomRaza().toLowerCase().contains(lowerFiltro);
+			return coincideNombre || coincideEspecie || coincideRaza;
+		}).toList();
 		int start = pagina * size;
-		int end = Math.min(start + size, mascotas.size());
-		List<Mascota> subList = mascotas.subList(start, end);
+		int end = Math.min(start + size, listaFiltrada.size());
+		List<Mascota> subList = listaFiltrada.subList(start, end);
 		List<MascotaDTO> dtos = subList.stream().map(this::convertirADTO).toList();
-		return new PageImpl<>(dtos, PageRequest.of(pagina, size), mascotas.size());
+		return new PageImpl<>(dtos, PageRequest.of(pagina, size), listaFiltrada.size());
 	}
 
 	@Override
 	public List<MascotaDTO> listarTodoPorUsuario(Integer idUsuario) {
 		List<Cliente> listaCliente = clienteRepo.findAll().stream()
 				.filter(c -> c.getUsuario().getIdUsuario().equals(idUsuario)).toList();
-
 		return listaCliente.stream().map(cl -> convertirADTO(cl.getMascota())).toList();
 	}
 

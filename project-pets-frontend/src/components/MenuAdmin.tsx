@@ -21,7 +21,7 @@ function MenuAdmin({ titulo }: MenuAdminProps) {
             <Link to="/admin/tipos-servicio">Gestión de Tipos de Servicio</Link>
             <Link to="#">Gestión de Servicios</Link>
             <Link to="/admin/clientes">Gestión de Clientes y Mascotas</Link>
-            <Link to="#">Gestión de Inventario</Link>
+            <Link to="/admin/inventario">Gestión de Inventario</Link>
             <button className="logout-btn" onClick={handleLogout}>
                 Cerrar Sesión
             </button>

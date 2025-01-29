@@ -10,7 +10,7 @@ public interface TipoServicioService {
 
 	List<TipoServicioDTO> listarTodo();
 
-	Page<TipoServicioDTO> listarPaginado(int pagina, int size);
+	Page<TipoServicioDTO> listarPaginado(int pagina, int size, String filtro);
 
 	TipoServicioDTO crear(TipoServicioDTO dto);
 
