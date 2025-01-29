@@ -52,8 +52,9 @@ public class UsuarioController {
 	}
 
 	@GetMapping
-	public Page<UsuarioDTO> listarPaginado(@RequestParam(defaultValue = "0") int pagina) {
-		return usuarioService.listarPaginado(pagina, 10);
+	public Page<UsuarioDTO> listarPaginado(@RequestParam(defaultValue = "0") int pagina,
+			@RequestParam(defaultValue = "") String filtro) {
+		return usuarioService.listarPaginado(pagina, 10, filtro);
 	}
 
 	@GetMapping("/clientes")

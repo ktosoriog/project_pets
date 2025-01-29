@@ -16,9 +16,10 @@ export interface Usuario {
 }
 
 export async function listarUsuariosPaginado(
-    pagina: number
+    pagina: number,
+    filtro: string
 ): Promise<{ content: Usuario[]; totalPages: number; totalElements: number }> {
-    return get('/api/admin/usuarios', { params: { pagina } });
+    return get('/api/admin/usuarios', { params: { pagina, filtro } });
 }
 
 export async function listarUsuariosTodo(): Promise<Usuario[]> {

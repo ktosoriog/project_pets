@@ -17,6 +17,7 @@ function GestionUsuarios() {
 
     const { showAlert } = useAlert();
     const [pagina, setPagina] = useState(0);
+    const [filtro, setFiltro] = useState('');
     const [usuarios, setUsuarios] = useState<Usuario[]>([]);
     const [totalPaginas, setTotalPaginas] = useState(0);
     const [showModal, setShowModal] = useState(false);
@@ -39,11 +40,11 @@ function GestionUsuarios() {
 
     useEffect(() => {
         cargarUsuarios();
-    }, [pagina]);
+    }, [pagina, filtro]);
 
     async function cargarUsuarios() {
         try {
-            const resp = await listarUsuariosPaginado(pagina);
+            const resp = await listarUsuariosPaginado(pagina, filtro);
             setUsuarios(resp.content);
             setTotalPaginas(resp.totalPages);
         } catch (error) {
@@ -171,6 +172,12 @@ function GestionUsuarios() {
                 <h1>Gestión de Usuarios</h1>
 
                 <div className="top-actions">
+                    <input
+                        type="text"
+                        placeholder="Filtrar usuarios por identificación, nombre, correo.."
+                        value={filtro}
+                        onChange={(e) => setFiltro(e.target.value)}
+                    />
                     <button onClick={handleAbrirModalCrear} className="btn-primario">Crear Usuario</button>
                     <button onClick={exportarCSV} className="btn-secundario">Exportar CSV</button>
                 </div>
@@ -178,7 +185,7 @@ function GestionUsuarios() {
                 <table className="usuarios-table">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>Identificacion</th>
                             <th>Nombre</th>
                             <th>Apellido</th>
                             <th>Correo</th>
@@ -189,7 +196,7 @@ function GestionUsuarios() {
                     <tbody>
                         {usuarios.map((u) => (
                             <tr key={u.idUsuario}>
-                                <td>{u.idUsuario}</td>
+                                <td>{u.identificacion}</td>
                                 <td>{u.nombre}</td>
                                 <td>{u.apellido}</td>
                                 <td>{u.correo}</td>

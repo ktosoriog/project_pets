@@ -25,11 +25,7 @@ function GestionClientesAdmin() {
     useEffect(() => {
         cargarClientes();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    function handleBuscar() {
-        cargarClientes();
-    }
+    }, [filtro]);
 
     function verMascotas(cliente: Usuario) {
         navigate(`/admin/gestion-mascotas-cliente/${cliente.idUsuario}`, { state: { nombreCliente: `${cliente.nombre} ${cliente.apellido}` } });
@@ -40,17 +36,14 @@ function GestionClientesAdmin() {
             <MenuAdmin />
             <div className="content">
                 <h1>Gestión de Clientes y Mascotas</h1>
-                <div style={{ marginBottom: '1rem' }}>
+
+                <div className="top-actions">
                     <input
                         type="text"
                         placeholder="Buscar por nombre o identificación..."
                         value={filtro}
                         onChange={(e) => setFiltro(e.target.value)}
-                        style={{ padding: '0.5rem', marginRight: '0.5rem' }}
                     />
-                    <button className="btn-primario" onClick={handleBuscar}>
-                        Buscar
-                    </button>
                 </div>
 
                 <table className="usuarios-table">

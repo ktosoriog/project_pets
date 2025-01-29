@@ -11,6 +11,8 @@ import GestionTipoServicio from './pages/GestionTipoServicio';
 import RestablecerClave from './pages/RestablecerClave';
 import GestionClientesAdmin from './pages/GestionClientesAdmin';
 import GestionMascotasPorCliente from './pages/GestionMascotasPorCliente';
+import GestionInventarioAdmin from './pages/GestionInventarioAdmin';
+import GestionInventarioVet from './pages/GestionInventarioVet';
 
 function App() {
     return (
@@ -18,27 +20,12 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
+                {/* INVENTARIO ADMIN */}
                 <Route
                     path="/admin"
                     element={
                         <PrivateRoute requiredRole="ADMINISTRADOR">
                             <DashboardAdmin />
-                        </PrivateRoute>
-                    }
-                />
-                <Route
-                    path="/veterinario"
-                    element={
-                        <PrivateRoute requiredRole="VETERINARIO">
-                            <DashboardVet />
-                        </PrivateRoute>
-                    }
-                />
-                <Route
-                    path="/cliente"
-                    element={
-                        <PrivateRoute requiredRole="CLIENTE">
-                            <DashboardCliente />
                         </PrivateRoute>
                     }
                 />
@@ -71,6 +58,40 @@ function App() {
                     element={
                         <PrivateRoute requiredRole="ADMINISTRADOR">
                             <GestionMascotasPorCliente />
+                        </PrivateRoute>
+                    }
+                />
+                <Route
+                    path="/admin/inventario"
+                    element={
+                        <PrivateRoute requiredRole="ADMINISTRADOR">
+                            <GestionInventarioAdmin />
+                        </PrivateRoute>
+                    }
+                />
+                {/* USUARIO VET */}
+                <Route
+                    path="/veterinario"
+                    element={
+                        <PrivateRoute requiredRole="VETERINARIO">
+                            <DashboardVet />
+                        </PrivateRoute>
+                    }
+                />
+                <Route
+                    path="/veterinario/inventario"
+                    element={
+                        <PrivateRoute requiredRole="VETERINARIO">
+                            <GestionInventarioVet />
+                        </PrivateRoute>
+                    }
+                />
+                {/* USUARIO CLIENTE */}
+                <Route
+                    path="/cliente"
+                    element={
+                        <PrivateRoute requiredRole="CLIENTE">
+                            <DashboardCliente />
                         </PrivateRoute>
                     }
                 />

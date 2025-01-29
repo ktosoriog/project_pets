@@ -14,9 +14,9 @@ export interface Mascota {
 }
 
 /** ADMIN */
-export async function listarMascotasAdminPaginado(pagina: number):
+export async function listarMascotasAdminPaginado(pagina: number, filtro: string):
     Promise<{ content: Mascota[]; totalPages: number; totalElements: number }> {
-    return get(`/api/admin/mascotas`, { params: { pagina } });
+    return get(`/api/admin/mascotas`, { params: { pagina, filtro } });
 }
 
 export async function listarMascotasAdminTodo(): Promise<Mascota[]> {
@@ -36,9 +36,9 @@ export async function eliminarMascotaAdmin(id: number): Promise<void> {
 }
 
 /** CLIENTE */
-export async function listarMascotasClientePaginado(pagina: number):
+export async function listarMascotasClientePaginado(pagina: number, filtro: string):
     Promise<{ content: Mascota[]; totalPages: number; totalElements: number }> {
-    return get(`/api/cliente/mascotas`, { params: { pagina } });
+    return get(`/api/cliente/mascotas`, { params: { pagina, filtro } });
 }
 
 export async function listarMascotasClienteTodo(): Promise<Mascota[]> {

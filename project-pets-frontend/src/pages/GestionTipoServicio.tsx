@@ -16,6 +16,7 @@ function GestionTipoServicio() {
 
     const { showAlert } = useAlert();
     const [pagina, setPagina] = useState(0);
+    const [filtro, setFiltro] = useState('');
     const [lista, setLista] = useState<TipoServicio[]>([]);
     const [totalPaginas, setTotalPaginas] = useState(0);
     const [showModal, setShowModal] = useState(false);
@@ -28,11 +29,11 @@ function GestionTipoServicio() {
 
     useEffect(() => {
         cargarTipoServicios();
-    }, [pagina]);
+    }, [pagina, filtro]);
 
     async function cargarTipoServicios() {
         try {
-            const resp = await listarTipoServiciosPaginado(pagina);
+            const resp = await listarTipoServiciosPaginado(pagina, filtro);
             setLista(resp.content);
             setTotalPaginas(resp.totalPages);
         } catch (error) {
@@ -143,6 +144,12 @@ function GestionTipoServicio() {
                 <h1>Gestión de Tipos de Servicio</h1>
 
                 <div className="top-actions">
+                    <input
+                        type="text"
+                        placeholder="Buscar por nombre o descripción..."
+                        value={filtro}
+                        onChange={(e) => setFiltro(e.target.value)}
+                    />
                     <button onClick={handleAbrirModalCrear} className="btn-primario">Crear TipoServicio</button>
                     <button onClick={exportarCSV} className="btn-secundario">Exportar CSV</button>
                 </div>

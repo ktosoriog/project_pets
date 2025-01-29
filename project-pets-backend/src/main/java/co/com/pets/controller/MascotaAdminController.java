@@ -28,8 +28,10 @@ public class MascotaAdminController {
 	}
 
 	@GetMapping
-	public Page<MascotaDTO> listarPaginado(@RequestParam(defaultValue = "0") int pagina) {
-		return mascotaService.listarPaginado(pagina, 10);
+	public Page<MascotaDTO> listarPaginado(@RequestParam(defaultValue = "0") int pagina,
+			@RequestParam(defaultValue = "") String filtro) {
+		return mascotaService.listarPaginado(pagina, 10, filtro);
+
 	}
 
 	@GetMapping("/todo")

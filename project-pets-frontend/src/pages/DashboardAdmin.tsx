@@ -17,7 +17,7 @@ function DashboardAdmin() {
                     <li><strong>Gestión de Tipos de Servicio:</strong> Administra los tipos de servicios ofrecidos (crear, editar, eliminar) y genera reportes en CSV.</li>
                     <li><strong>Gestión de Servicios:</strong> Lista, crea, edita y cancela servicios. También puedes ver el estado de cada servicio (Pendiente, Aceptado, En curso, Finalizado, Cancelado).</li>
                     <li><strong>Gestión de Clientes y Mascotas:</strong> Lista y edita la información de las mascotas registradas en el sistema.</li>
-                    <li><strong>Gestión de Inventario:</strong> Administra los productos disponibles (crear, editar, eliminar) y asócialos a los servicios según sea necesario.</li>
+                    <li><strong>Gestión de Inventario:</strong> Administra los productos disponibles (crear, editar, eliminar).</li>
                 </ul>
                 <p className="welcome-text">
                     Utiliza estas herramientas para mantener el sistema organizado y garantizar una experiencia óptima para todos los usuarios.
