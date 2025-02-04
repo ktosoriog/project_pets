@@ -38,8 +38,6 @@ public class Inventario {
 	@Column(name = "StopMin")
 	private Integer stopMin;
 
-	// Getters y Setters
-
 	public Integer getIdInventario() {
 		return idInventario;
 	}

@@ -18,7 +18,7 @@ function MenuCliente({ titulo }: MenuClienteProps) {
         <div className="sidebar">
             <h2>{titulo ?? 'Cliente'}</h2>
             <Link to="/cliente/gestion-mascotas">Mis Mascotas</Link>
-            <Link to="#">Mis Servicios</Link>
+            <Link to="/cliente/servicios">Mis Servicios</Link>
             <button className="logout-btn" onClick={handleLogout}>
                 Cerrar Sesión
             </button>

@@ -17,7 +17,7 @@ function MenuVet({ titulo }: MenuVetProps) {
     return (
         <div className="sidebar">
             <h2>{titulo ?? 'Vet'}</h2>
-            <Link to="">Mis Servicios</Link>
+            <Link to="/veterinario/servicios">Gestión de Servicios</Link>
             <Link to="/veterinario/inventario">Inventario</Link>
             <button className="logout-btn" onClick={handleLogout}>
                 Cerrar Sesión
