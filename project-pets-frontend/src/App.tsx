@@ -13,6 +13,9 @@ import GestionClientesAdmin from './pages/GestionClientesAdmin';
 import GestionMascotasPorCliente from './pages/GestionMascotasPorCliente';
 import GestionInventarioAdmin from './pages/GestionInventarioAdmin';
 import GestionInventarioVet from './pages/GestionInventarioVet';
+import GestionServiciosCliente from './pages/GestionServiciosCliente';
+import GestionServiciosVet from './pages/GestionServiciosVet';
+import GestionServiciosAdmin from './pages/GestionServiciosAdmin';
 
 function App() {
     return (
@@ -69,6 +72,14 @@ function App() {
                         </PrivateRoute>
                     }
                 />
+                <Route
+                    path="/admin/servicios"
+                    element={
+                        <PrivateRoute requiredRole="ADMINISTRADOR">
+                            <GestionServiciosAdmin />
+                        </PrivateRoute>
+                    }
+                />
                 {/* USUARIO VET */}
                 <Route
                     path="/veterinario"
@@ -86,6 +97,14 @@ function App() {
                         </PrivateRoute>
                     }
                 />
+                <Route
+                    path="/veterinario/servicios"
+                    element={
+                        <PrivateRoute requiredRole="VETERINARIO">
+                            <GestionServiciosVet />
+                        </PrivateRoute>
+                    }
+                />
                 {/* USUARIO CLIENTE */}
                 <Route
                     path="/cliente"
@@ -100,6 +119,14 @@ function App() {
                     element={
                         <PrivateRoute requiredRole="CLIENTE">
                             <GestionMascotasPorCliente />
+                        </PrivateRoute>
+                    }
+                />
+                <Route
+                    path="/cliente/servicios"
+                    element={
+                        <PrivateRoute requiredRole="CLIENTE">
+                            <GestionServiciosCliente />
                         </PrivateRoute>
                     }
                 />

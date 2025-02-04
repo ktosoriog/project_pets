@@ -13,7 +13,6 @@ function DashboardVet() {
                 </p>
                 <ul className="functionality-list">
                     <li><strong>Gestión de Servicios:</strong> Acepta, inicia, finaliza o cancela servicios asignados. Actualiza el estado en tiempo real (Pendiente, Aceptado, En curso, Finalizado).</li>
-                    <li><strong>Detalles de Atención:</strong> Registra procedimientos realizados, medicamentos usados y observaciones clínicas al finalizar cada servicio.</li>
                     <li><strong>Historias Clínicas:</strong> Crea o actualiza el historial médico de las mascotas, consulta antecedentes y diagnósticos previos.</li>
                     <li><strong>Inventario:</strong> Verifica la disponibilidad de medicamentos e insumos antes de iniciar un servicio.</li>
                 </ul>

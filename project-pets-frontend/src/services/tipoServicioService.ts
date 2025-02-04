@@ -32,3 +32,7 @@ export async function actualizarTipoServicio(
 export async function eliminarTipoServicio(id: number): Promise<void> {
     return del(`/api/admin/tipos-servicio/${id}`);
 }
+
+export async function listarTipoServiciosTodoCliente(): Promise<TipoServicio[]> {
+    return get('/api/cliente/tipos-servicio/todo');
+}

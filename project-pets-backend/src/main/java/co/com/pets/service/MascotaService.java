@@ -18,7 +18,6 @@ public interface MascotaService {
 
 	void eliminar(Integer id);
 
-	// Filtrar por idUsuario (Cliente)
 	Page<MascotaDTO> listarPaginadoPorUsuario(int pagina, int size, Integer idUsuario, String filtro);
 
 	List<MascotaDTO> listarTodoPorUsuario(Integer idUsuario);

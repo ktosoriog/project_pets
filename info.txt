@@ -105,3 +105,8 @@ Informacion:
 				-	contraseña (admin123).
 				-	USE dbprojectpets;
 				-	SHOW TABLES
+				
+	Pendientes:
+	
+		Gestion de usuarios - CLIENTE
+		Consulta tipos de servicio - CLIENTE
