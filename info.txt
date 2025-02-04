@@ -91,13 +91,13 @@ Informacion:
 	
 		Comandos despliegue EC2:
 		
-			-	URL front: http://ec2-52-7-157-2.compute-1.amazonaws.com/
-			-	URL front Back: http://ec2-52-7-157-2.compute-1.amazonaws.com:8080/
-			-	docker-compose build
-			-	docker-compose up -d
-			-	docker-compose ps
+			-	URL front: http://ec2-54-80-58-58.compute-1.amazonaws.com
+			-	URL front Back: http://ec2-54-80-58-58.compute-1.amazonaws.com:8080/
+			-	docker compose build
+			-	docker compose up -d
+			-	docker compose ps
 			-	docker logs project-pets-backend
-			-	docker-compose down
+			-	docker compose down
 			-	docker volume rm project_pets_db_data 
 			-	Comandos BD:
 				-	docker exec -it project-pets-db bash
@@ -105,8 +105,3 @@ Informacion:
 				-	contraseña (admin123).
 				-	USE dbprojectpets;
 				-	SHOW TABLES
-				
-	Pendientes:
-	
-		Gestion de usuarios - CLIENTE
-		Consulta tipos de servicio - CLIENTE
