@@ -34,18 +34,95 @@ Informacion:
 				project-pets-backend
 				└── src
 					└── main
-						└── java
-							└── co.com.pets
-								├── config             // Configuración del proyecto (seguridad, web)
-								├── constant           // Constantes globales del proyecto
-								├── controller         // Controladores para manejar solicitudes HTTP
-								├── dto                // Clases para transferencia de datos (DTOs)
-								├── entity             // Entidades que representan tablas de la base de datos
-								├── exception          // Manejo personalizado de excepciones
-								├── repository         // Interfaces de acceso a la base de datos (JPA Repositories)
-								├── service            // Servicios con lógica de negocio
-								├── service.impl       // Implementaciones de los servicios
-								├── util               // Clases utilitarias (e.g., JWT)
+						├── java
+						│   └── co.com.pets
+						│       ├── config             // Configuración del proyecto (seguridad, autenticación)
+						│       │   ├── ConfigSecurity.java
+						│       │   ├── CustomAuthenticationEntryPoint.java
+						│       ├── constant           // Constantes globales del proyecto
+						│       │   ├── MensajesConstant.java
+						│       ├── controller         // Controladores para manejar solicitudes HTTP
+						│       │   ├── AuthController.java
+						│       │   ├── CatalogoController.java
+						│       │   ├── HistoriaClinicaController.java
+						│       │   ├── InventarioAdminController.java
+						│       │   ├── InventarioVetController.java
+						│       │   ├── MascotaAdminController.java
+						│       │   ├── MascotaClienteController.java
+						│       │   ├── ServicioAdminController.java
+						│       │   ├── ServicioClienteController.java
+						│       │   ├── ServicioVetController.java
+						│       │   ├── TipoServicioClienteController.java
+						│       │   ├── TipoServicioController.java
+						│       │   ├── UsuarioController.java
+						│       ├── dto                // Clases para transferencia de datos (DTOs)
+						│       │   ├── EspecieDTO.java
+						│       │   ├── HistoriaClinicaDTO.java
+						│       │   ├── InventarioDTO.java
+						│       │   ├── LoginRequestDTO.java
+						│       │   ├── LoginResponseDTO.java
+						│       │   ├── MascotaDTO.java
+						│       │   ├── RazaDTO.java
+						│       │   ├── ServicioDTO.java
+						│       │   ├── TipoServicioDTO.java
+						│       │   ├── UsuarioDTO.java
+						│       ├── entity             // Entidades que representan tablas de la base de datos
+						│       │   ├── Cliente.java
+						│       │   ├── Especie.java
+						│       │   ├── HistoriaClinica.java
+						│       │   ├── Inventario.java
+						│       │   ├── Mascota.java
+						│       │   ├── Raza.java
+						│       │   ├── Rol.java
+						│       │   ├── Servicio.java
+						│       │   ├── TipoServicio.java
+						│       │   ├── Usuario.java
+						│       ├── exception          // Manejo personalizado de excepciones
+						│       │   ├── GlobalExceptionHandler.java
+						│       │   ├── NoAutorizadoException.java
+						│       │   ├── ObjetoNoEncontradoException.java
+						│       │   ├── OperacionInvalidaException.java
+						│       ├── repository         // Interfaces de acceso a la base de datos (JPA Repositories)
+						│       │   ├── ClienteRepository.java
+						│       │   ├── EspecieRepository.java
+						│       │   ├── HistoriaClinicaRepository.java
+						│       │   ├── InventarioRepository.java
+						│       │   ├── MascotaRepository.java
+						│       │   ├── RazaRepository.java
+						│       │   ├── RolRepository.java
+						│       │   ├── ServicioRepository.java
+						│       │   ├── TipoServicioRepository.java
+						│       │   ├── UsuarioRepository.java
+						│       ├── service            // Servicios con lógica de negocio
+						│       │   ├── AuthService.java
+						│       │   ├── EmailService.java
+						│       │   ├── EspecieService.java
+						│       │   ├── HistoriaClinicaService.java
+						│       │   ├── InventarioService.java
+						│       │   ├── MascotaService.java
+						│       │   ├── RazaService.java
+						│       │   ├── ServicioService.java
+						│       │   ├── TipoServicioService.java
+						│       │   ├── UsuarioService.java
+						│       ├── service.impl       // Implementaciones de los servicios
+						│       │   ├── AuthServiceImpl.java
+						│       │   ├── DetallesUsuarioService.java
+						│       │   ├── EspecieServiceImpl.java
+						│       │   ├── HistoriaClinicaServiceImpl.java
+						│       │   ├── InventarioServiceImpl.java
+						│       │   ├── MascotaServiceImpl.java
+						│       │   ├── RazaServiceImpl.java
+						│       │   ├── ServicioServiceImpl.java
+						│       │   ├── TipoServicioServiceImpl.java
+						│       │   ├── UsuarioServiceImpl.java
+						│       ├── util               // Clases utilitarias (e.g., JWT)
+						│       │   ├── JwtFiltro.java
+						│       │   ├── JwtUtil.java
+						│       │   ├── ResetTokenStore.java
+						├── resources
+						│   ├── META-INF
+						│   ├── application.properties
+
 		
 		project_pets_frontend:
 		
@@ -62,22 +139,30 @@ Informacion:
 				├── node_modules           // Dependencias del proyecto
 				├── public                 // Archivos públicos accesibles desde el navegador
 				├── src                    // Código fuente del proyecto
-				│   ├── assets             // Recursos como imágenes y otros archivos estáticos
-				│   │   └── images         // Imágenes del proyecto
-				│   ├── styles             // Archivos de estilos globales
+				│   ├── assets             // Recursos como imágenes y archivos estáticos
+				│   │   ├── images
+				│   │   │   ├── logo.png
+				│   │   │   ├── logo.psd
+				│   │   ├── styles
+				│   │   │   ├── global.css
 				│   ├── components         // Componentes reutilizables de la UI
 				│   ├── context            // Contexto global de React
-				│   ├── hooks              // Hooks personalizados
 				│   ├── pages              // Páginas principales de la aplicación
-				│   ├── router             // Configuración de rutas de la aplicación
+				│   ├── router             // Configuración de rutas
 				│   ├── services           // Servicios para conexión con la API
-				│   ├── App.tsx            // Componente raíz de la aplicación
-				│   ├── main.tsx           // Punto de entrada del proyecto
-				│   ├── vite-env.d.ts      // Tipado para configuración de Vite
-				├── .env.development       // Variables de entorno para desarrollo
-				├── .env.production        // Variables de entorno para producción
-				├── default.conf           // Configuración adicional
+				│   ├── util               // Utilidades generales
+				│   ├── App.tsx            // Componente raíz
+				│   ├── main.tsx           // Punto de entrada
+				│   ├── vite-env.d.ts      // Configuración de Vite
+				├── .env.development       // Variables de entorno (desarrollo)
+				├── .env.production        // Variables de entorno (producción)
+				├── Dockerfile             // Configuración para Docker
+				├── package.json           // Dependencias y configuración del proyecto
+				├── tsconfig.json          // Configuración de TypeScript
 
+		Base de datos: dbprojectpets
+			Base de datos relacional mysql.
+			
 	Usuarios:
 	
 		- admin@pets.com, Password: 123456789 - Encriptado($2a$10$rKR9yfhY7FvvjvMVMs8sUu1jhWjNoiu/AhlpecpjtCBeRxZVjmNRG)
